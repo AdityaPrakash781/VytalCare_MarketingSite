@@ -58,13 +58,21 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="ghost" className="text-slate-600 dark:text-slate-300 hover:text-primary">
+          <Button
+            variant="ghost"
+            className="text-slate-600 dark:text-slate-300 hover:text-primary"
+            onClick={() => window.open("https://health-navigator-copy.vercel.app/", "_blank")}
+          >
             Log in
           </Button>
-          <Button className="bg-primary hover:bg-teal-700 text-white rounded-full px-6 shadow-lg shadow-teal-900/20">
+          <Button
+            className="bg-primary hover:bg-teal-700 text-white rounded-full px-6 shadow-lg shadow-teal-900/20"
+            onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
+          >
             Join Waitlist
           </Button>
         </div>
+
 
         {/* Mobile Menu Toggle */}
         <button
@@ -89,8 +97,23 @@ export function Navbar() {
             </a>
           ))}
           <div className="h-px bg-slate-100 dark:bg-slate-800 my-2" />
-          <Button variant="ghost" className="justify-start">Log in</Button>
-          <Button className="w-full bg-primary text-white rounded-full">Join Waitlist</Button>
+          <Button
+            variant="ghost"
+            className="justify-start"
+            onClick={() => window.open("https://your-actual-app.vercel.app", "_blank")}
+          >
+            Log in
+          </Button>
+          <Button
+            className="w-full bg-primary text-white rounded-full"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Join Waitlist
+          </Button>
+
         </div>
       )}
     </header>
