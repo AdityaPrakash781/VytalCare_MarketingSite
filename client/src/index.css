@@ -139,3 +139,12 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400;
   }
 }
+
+/* Global 10% visual scale — no layout changes */
+body {
+  zoom: 0.9;
+}
+
+
+
+
