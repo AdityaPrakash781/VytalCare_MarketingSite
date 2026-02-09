@@ -1,9 +1,7 @@
-import { type User, type InsertUser, type Lead, type InsertLead } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type User, type InsertUser, type Lead, type InsertLead } from "../shared/schema";
+import { supabaseAdmin } from "./supabase-admin";
 
-// modify the interface with any CRUD methods
-// you might need
-
+// Storage interface - keeping same API for compatibility
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
@@ -11,51 +9,84 @@ export interface IStorage {
 
   createLead(lead: InsertLead): Promise<Lead>;
   getAllLeads(): Promise<Lead[]>;
+  deleteLead(id: string): Promise<void>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-  private leads: Map<string, Lead>;
-
-  constructor() {
-    this.users = new Map();
-    this.leads = new Map();
-  }
-
+// Supabase-backed storage implementation
+export class SupabaseStorage implements IStorage {
+  // User methods (keeping existing functionality)
   async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+    const { data, error } = await supabaseAdmin
+      .from("users")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) return undefined;
+    return data as User;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const { data, error } = await supabaseAdmin
+      .from("users")
+      .select("*")
+      .eq("username", username)
+      .single();
+
+    if (error) return undefined;
+    return data as User;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const { data, error } = await supabaseAdmin
+      .from("users")
+      .insert(insertUser)
+      .select()
+      .single();
+
+    if (error) throw new Error(`Failed to create user: ${error.message}`);
+    return data as User;
   }
 
+  // Lead methods - production waitlist
   async createLead(insertLead: InsertLead): Promise<Lead> {
-    const id = randomUUID();
-    const lead: Lead = {
-      id,
-      email: insertLead.email,
-      name: insertLead.name ?? null,
-      createdAt: new Date().toISOString()
-    };
-    this.leads.set(id, lead);
-    return lead;
-  }
+    const { data, error } = await supabaseAdmin
+      .from("leads")
+      .insert({ email: insertLead.email, name: insertLead.name })
+      .select()
+      .single();
 
+    if (error) {
+      // Handle duplicate email gracefully
+      if (error.code === "23505") {
+        throw new Error("This email is already on the waitlist");
+      }
+      throw new Error(`Failed to add to waitlist: ${error.message}`);
+    }
+
+    return data as Lead;
+  }
 
   async getAllLeads(): Promise<Lead[]> {
-    return Array.from(this.leads.values());
+    const { data, error } = await supabaseAdmin
+      .from("leads")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) throw new Error(`Failed to fetch leads: ${error.message}`);
+    return data as Lead[];
+  }
+
+  async deleteLead(id: string): Promise<void> {
+    const { error } = await supabaseAdmin
+      .from("leads")
+      .delete()
+      .eq("id", id);
+
+    if (error) throw new Error(`Failed to delete lead: ${error.message}`);
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new SupabaseStorage();
+
 

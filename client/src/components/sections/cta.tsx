@@ -13,6 +13,10 @@ export function CTASection() {
   const { toast } = useToast();
   const { ref: buttonRef, position } = useMagneticHover(0.15);
 
+  // Spam protection
+  const [formStartTime] = useState(Date.now());
+  const [honeypot, setHoneypot] = useState("");
+
   const mutation = useMutation({
     mutationFn: async (email: string) => {
       const res = await apiRequest("POST", "/api/leads", { email });
@@ -26,10 +30,15 @@ export function CTASection() {
       setEmail("");
     },
     onError: (error: Error) => {
+      // User-friendly error message for duplicates
+      const message = error.message.includes("already on the waitlist")
+        ? "You're already on the list! We'll notify you soon."
+        : error.message;
+
       toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
+        title: error.message.includes("already") ? "Already Registered" : "Error",
+        description: message,
+        variant: error.message.includes("already") ? "default" : "destructive",
       });
     },
   });
@@ -37,6 +46,20 @@ export function CTASection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+
+    // Spam protection checks
+    if (honeypot) {
+      // Bot filled honeypot - silently reject
+      console.warn("Spam detected: honeypot filled");
+      return;
+    }
+
+    if (Date.now() - formStartTime < 2000) {
+      // Submitted too fast - silently reject
+      console.warn("Spam detected: too fast");
+      return;
+    }
+
     mutation.mutate(email);
   };
 
@@ -75,6 +98,18 @@ export function CTASection() {
             </p>
 
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 justify-center">
+              {/* Honeypot field - hidden from users, bots will fill it */}
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                className="absolute -left-[9999px]"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               <input
                 type="email"
                 value={email}

@@ -5,11 +5,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
+import AdminWaitlist from "@/pages/admin-waitlist";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/admin/waitlist" component={AdminWaitlist} />
       <Route component={NotFound} />
     </Switch>
   );
