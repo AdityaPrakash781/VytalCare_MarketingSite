@@ -2,7 +2,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { ArrowRight, Activity, Brain, HeartHandshake } from "lucide-react";
+import { ArrowRight, Activity, Brain, HeartHandshake, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -17,7 +17,7 @@ export default function About() {
             <Navbar />
             <main className="pt-20">
                 {/* Hero Section */}
-                <section className="py-20 px-6 container mx-auto text-center relative">
+                <section className="py-24 px-6 container mx-auto text-center relative">
                     {/* Background Glow */}
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[100px] -z-10 pointer-events-none" />
 
@@ -30,18 +30,18 @@ export default function About() {
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 dark:bg-teal-900/30 border border-teal-100 dark:border-teal-800 backdrop-blur-sm mb-6">
                             <span className="text-teal-600 dark:text-teal-400 text-[10px] font-bold tracking-widest uppercase">Our Philosophy</span>
                         </div>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-medium text-slate-900 dark:text-white mb-6 tracking-tighter leading-[1.1] text-balance">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1] text-balance">
                             Health should be <br />
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-teal-400 dark:from-teal-400 dark:to-teal-200">proactive</span>, not reactive.
                         </h1>
-                        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-2xl mx-auto text-balance">
+                        <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 font-sans font-light leading-relaxed max-w-2xl mx-auto text-balance">
                             We're building the intelligence layer for your body—giving you the time, clarity, and control to prevent tomorrow's health crises today.
                         </p>
                     </motion.div>
                 </section>
 
                 {/* Mission Section */}
-                <section className="py-20 relative overflow-hidden">
+                <section className="py-24 relative overflow-hidden">
                     <div className="container mx-auto px-6 max-w-5xl">
                         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
                             <motion.div
@@ -75,8 +75,8 @@ export default function About() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
                             >
-                                <h2 className="text-2xl md:text-4xl font-heading font-medium text-slate-900 dark:text-white mb-6 leading-tight">
-                                    The Problem with <span className="italic font-serif text-slate-500 dark:text-slate-400">"Wait and See"</span>
+                                <h2 className="text-3xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-6 leading-[1.1] tracking-tight">
+                                    The Problem with <span className="italic text-teal-600 dark:text-teal-400">"Wait and See"</span>
                                 </h2>
                                 <div className="space-y-6 text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-light">
                                     <p>
@@ -96,6 +96,8 @@ export default function About() {
                         </div>
                     </div>
                 </section>
+
+
 
                 {/* Approach Section */}
                 <section id="approach" className="py-24 container mx-auto px-6">
@@ -147,7 +149,7 @@ export default function About() {
                 </section>
 
                 {/* Vision Section */}
-                <section className="py-28 bg-[#0B1221] text-white relative overflow-hidden">
+                <section className="py-32 bg-[#0B1221] text-white relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-soft-light pointer-events-none" />
                     <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-900/20 rounded-full blur-[120px] pointer-events-none" />
                     <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[100px] pointer-events-none" />
@@ -160,8 +162,8 @@ export default function About() {
                             transition={{ duration: 0.8 }}
                             className="max-w-4xl mx-auto"
                         >
-                            <span className="block text-teal-400/80 font-mono text-xs tracking-widest uppercase mb-6">The Vision</span>
-                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-medium tracking-tight leading-[1.2] mb-10 text-balance">
+                            <span className="block text-teal-400/80 font-sans text-xs font-bold tracking-[0.2em] uppercase mb-8">The Vision</span>
+                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold tracking-tight leading-[1.2] mb-10 text-balance">
                                 "We imagine a world where your health isn't a mystery you solve in the emergency room, but a story you write every day."
                             </h2>
                             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-teal-500 to-transparent mx-auto rounded-full opacity-50" />
@@ -169,19 +171,75 @@ export default function About() {
                     </div>
                 </section>
 
+                {/* Impact Section */}
+                <section className="py-24 relative overflow-hidden">
+                    <div className="container mx-auto px-6 max-w-4xl text-center">
+                        <div className="w-full h-px bg-gradient-to-r from-transparent via-teal-200 dark:via-teal-800 to-transparent mb-16 opacity-50" />
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 mb-8">
+                                <Globe className="w-6 h-6 animate-pulse" />
+                            </div>
+
+                            <h2 className="text-3xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-8">
+                                Every Membership Creates Impact
+                            </h2>
+
+                            <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 font-light leading-relaxed text-pretty">
+                                <p>
+                                    While advanced healthcare tools are rapidly evolving, billions of people still lack access to basic preventative care, early diagnostics, and reliable medical guidance. Preventable diseases continue to burden communities not because solutions don’t exist — but because access is uneven.
+                                </p>
+                                <p>
+                                    VytalCare commits a portion of every membership toward initiatives that support preventative healthcare education, early detection programs, and digital health infrastructure in underserved communities. By joining VytalCare, you’re not only investing in your own health intelligence — you’re helping extend proactive healthcare to people who need it most.
+                                </p>
+                                <p>
+                                    Every membership helps move healthcare from reactive treatment to early intervention, reduces long-term system strain, and supports a future where better health decisions are accessible to everyone. <span className="text-teal-700 dark:text-teal-400 font-medium">Because proactive healthcare shouldn’t be a privilege — it should be the global standard.</span>
+                                </p>
+                            </div>
+
+                            <div className="mt-12 inline-block px-6 py-3 rounded-full bg-teal-50/50 dark:bg-teal-900/10 border border-teal-100 dark:border-teal-800/50 backdrop-blur-sm">
+                                <span className="text-teal-700 dark:text-teal-300 font-medium text-sm flex items-center gap-2">
+                                    <Activity className="w-4 h-4" />
+                                    Preventative care reduces 60% of chronic disease risk
+                                </span>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+
                 {/* CTA Section */}
-                <section className="py-24 container mx-auto px-6 text-center">
-                    <div className="max-w-2xl mx-auto">
-                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+                <section className="pt-20 pb-32 container mx-auto px-6 text-center relative">
+                    {/* Background Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal-500/5 dark:bg-teal-500/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="max-w-3xl mx-auto"
+                    >
+                        <span className="block text-teal-600 dark:text-teal-400 font-sans text-xs font-bold tracking-[0.2em] uppercase mb-6">
+                            Ready to Start?
+                        </span>
+                        <h2 className="text-4xl md:text-6xl font-heading font-bold text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1]">
                             Join the movement.
                         </h2>
-                        <Button asChild size="lg" className="rounded-full h-14 px-10 text-lg bg-teal-600 hover:bg-teal-700 text-white shadow-lg shadow-teal-500/20">
+                        <p className="text-lg text-slate-600 dark:text-slate-300 font-sans font-light mb-10 leading-relaxed max-w-xl mx-auto">
+                            Be part of the generation that chooses to know, not guess. Your future self will thank you.
+                        </p>
+                        <Button asChild size="lg" className="rounded-full h-14 px-10 text-lg bg-teal-600/40 backdrop-blur-md border border-teal-500/30 hover:bg-teal-600/60 text-white shadow-xl shadow-teal-500/10 hover:shadow-teal-500/20 transition-all duration-300 hover:-translate-y-1">
                             <Link href="/#cta">
                                 Join the Waitlist
                                 <ArrowRight className="ml-2 w-5 h-5" />
                             </Link>
                         </Button>
-                    </div>
+                    </motion.div>
                 </section>
 
             </main>
