@@ -65,7 +65,6 @@ export function FeaturesSection() {
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
-              className="group p-8 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 hover:shadow-xl hover:shadow-teal-900/5 hover:brightness-105 transition-all duration-500 hover:-translate-y-1"
               initial={{ opacity: 0, filter: "blur(8px)", y: 20 }}
               whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
               viewport={{ once: true }}
@@ -74,16 +73,23 @@ export function FeaturesSection() {
                 duration: 0.7,
                 ease: "easeOut"
               }}
+              className="h-full"
             >
-              <div className={`w-12 h-12 rounded-2xl ${feature.color} bg-opacity-10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                <feature.icon className={`w-6 h-6 text-slate-900 dark:text-white`} />
+              {/* Shallow Card Holder (Tray) with deep inset shadow */}
+              <div className="group h-full p-2 rounded-[2.5rem] bg-slate-50 dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800 shadow-[inset_0_2px_8px_rgba(0,0,0,0.04),inset_0_1px_2px_rgba(0,0,0,0.02)] transition-colors duration-300">
+                {/* The Card with physical depth (bottom border) and lighting */}
+                <div className="h-full p-8 rounded-[2rem] bg-white/60 dark:bg-slate-900/40 backdrop-blur-xl border-t border-l border-r border-white/50 dark:border-white/10 border-b-[3px] border-b-slate-200/60 dark:border-b-slate-950 shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_-12px_rgba(20,184,166,0.3),0_8px_24px_-8px_rgba(20,184,166,0.2)] group-hover:border-b-teal-500 group-hover:border-teal-500/10 active:translate-y-0 active:shadow-sm">
+                  <div className={`w-14 h-14 rounded-2xl ${feature.color} bg-opacity-10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm ring-1 ring-inset ring-black/5`}>
+                    <feature.icon className={`w-7 h-7 text-slate-900 dark:text-white`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-[15px]">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                {feature.description}
-              </p>
             </motion.div>
           ))}
         </div>
