@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 
 import slide1 from "@/assets/slide1.jpg";
@@ -43,6 +44,7 @@ const slides = [
 ];
 
 export function MissionSlider() {
+    const [, setLocation] = useLocation();
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
@@ -152,15 +154,15 @@ export function MissionSlider() {
                                 )}
 
                                 {/* Button */}
-                                <motion.a
-                                    href="#cta"
+                                <motion.button
+                                    onClick={() => setLocation("/about")}
                                     className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-teal-50 text-slate-900 font-semibold rounded-full shadow-lg transition-all duration-300 text-base pointer-events-auto"
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.25, duration: 0.4 }}
                                 >
                                     Learn more
-                                </motion.a>
+                                </motion.button>
                             </div>
                         </div>
                     </div>

@@ -73,10 +73,10 @@ export function Navbar() {
             Log in
           </Button>
           <Button
+            asChild
             className="bg-primary hover:bg-teal-700 text-white rounded-full px-6 shadow-lg shadow-teal-900/20"
-            onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
           >
-            Join Waitlist
+            <Link href="/#cta">Join Waitlist</Link>
           </Button>
         </div>
 
@@ -115,13 +115,11 @@ export function Navbar() {
             Log in
           </Button>
           <Button
+            asChild
             className="w-full bg-primary text-white rounded-full"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" });
-            }}
+            onClick={() => setMobileMenuOpen(false)}
           >
-            Join Waitlist
+            <Link href="/#cta">Join Waitlist</Link>
           </Button>
 
         </div>

@@ -64,8 +64,15 @@ export function CTASection() {
   };
 
   return (
-    <section id="cta" className="py-24 bg-white dark:bg-[#081B2F]">
-      <div className="container mx-auto px-6">
+    <section id="cta" className="py-24 bg-white dark:bg-[#0B1221] relative overflow-hidden transition-colors duration-300">
+      {/* Dark Mode Background Layers */}
+      <div className="absolute inset-0 pointer-events-none hidden dark:block">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-soft-light" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-900/40 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-900/40 rounded-full blur-[100px]" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
 
         <motion.div
           className="relative rounded-[2.5rem] overflow-hidden text-white px-6 py-20 text-center"
@@ -143,7 +150,7 @@ export function CTASection() {
               </motion.div>
             </form>
 
-            <p className="mt-4 text-xs text-white/40 tracking-wide font-medium">
+            <p className="mt-4 text-sm text-white/80 tracking-wide font-medium">
               No spam. Unsubscribe anytime.
             </p>
           </div>
