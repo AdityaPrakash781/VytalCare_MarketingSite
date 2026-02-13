@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,18 @@ export function Navbar() {
     { name: "Features", href: "#features" },
     { name: "Science", href: "#trust" },
   ];
+
+  const handleJoinWaitlist = () => {
+    if (location === "/") {
+      const ctaSection = document.getElementById("cta");
+      if (ctaSection) {
+        ctaSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      setLocation("/#cta");
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <header
@@ -74,10 +87,10 @@ export function Navbar() {
             Log in
           </Button>
           <Button
-            asChild
             className="bg-primary hover:bg-teal-700 text-white rounded-full px-6 shadow-lg shadow-teal-900/20"
+            onClick={handleJoinWaitlist}
           >
-            <Link href="/#cta">Join Waitlist</Link>
+            Join Waitlist
           </Button>
         </div>
 
@@ -116,11 +129,10 @@ export function Navbar() {
             Log in
           </Button>
           <Button
-            asChild
             className="w-full bg-primary text-white rounded-full"
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={handleJoinWaitlist}
           >
-            <Link href="/#cta">Join Waitlist</Link>
+            Join Waitlist
           </Button>
 
         </div>
