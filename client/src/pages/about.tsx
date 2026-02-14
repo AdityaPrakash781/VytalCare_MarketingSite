@@ -199,7 +199,7 @@ export default function About() {
                                         While advanced healthcare tools are rapidly evolving, billions of people still lack access to basic preventative care, early diagnostics, and reliable medical guidance. Preventable diseases continue to burden communities not because solutions don’t exist — but because access is uneven.
                                     </p>
                                     <p>
-                                        VytalCare commits a portion of every membership toward initiatives that support preventative healthcare education, early detection programs, and digital health infrastructure in underserved communities. By joining VytalCare, you’re not only investing in your own health intelligence — you’re helping extend proactive healthcare to people who need it most.
+                                        ProVytal commits a portion of every membership toward initiatives that support preventative healthcare education, early detection programs, and digital health infrastructure in underserved communities. By joining ProVytal, you’re not only investing in your own health intelligence — you’re helping extend proactive healthcare to people who need it most.
                                     </p>
                                     <p>
                                         Every membership helps move healthcare from reactive treatment to early intervention, reduces long-term system strain, and supports a future where better health decisions are accessible to everyone. <span className="text-teal-700 dark:text-teal-400 font-medium">Because proactive healthcare shouldn’t be a privilege — it should be the global standard.</span>
