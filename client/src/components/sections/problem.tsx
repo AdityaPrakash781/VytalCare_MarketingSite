@@ -37,6 +37,59 @@ export function ProblemSection() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-28 relative">
+            {/* Connection Pulse Line */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] md:w-[130%] h-[120px] hidden md:block z-0 pointer-events-none">
+              <svg viewBox="0 0 400 100" className="w-full h-full opacity-60">
+                <defs>
+                  <linearGradient id="pulse-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgba(20, 184, 166, 0)" />
+                    <stop offset="10%" stopColor="rgba(20, 184, 166, 0.1)" />
+                    <stop offset="50%" stopColor="#2dd4bf" />
+                    <stop offset="90%" stopColor="rgba(20, 184, 166, 0.1)" />
+                    <stop offset="100%" stopColor="rgba(20, 184, 166, 0)" />
+                  </linearGradient>
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+                    <feMerge>
+                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                {/* Background Line */}
+                <path
+                  d="M 0 50 L 170 50 L 185 15 L 200 50 L 215 85 L 230 50 L 400 50"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="0.5"
+                  className="text-slate-300/30 dark:text-slate-700/30"
+                />
+
+                {/* Animated Pulse */}
+                <motion.path
+                  d="M 0 50 L 170 50 L 185 15 L 200 50 L 215 85 L 230 50 L 400 50"
+                  fill="none"
+                  stroke="url(#pulse-gradient)"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  filter="url(#glow)"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{
+                    pathLength: [0, 1, 1],
+                    pathOffset: [0, 0, 1],
+                    opacity: [0, 1, 0]
+                  }}
+                  transition={{
+                    duration: 3,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 1
+                  }}
+                />
+              </svg>
+            </div>
             {/* Old Way */}
             <motion.div
               className="bg-slate-100/60 dark:bg-slate-800/80 backdrop-blur-sm p-8 md:p-12 rounded-[2rem] shadow-md shadow-slate-400/30 dark:shadow-black/40 border border-slate-400/40 dark:border-slate-700 relative z-10 hover:shadow-lg hover:shadow-slate-400/35 transition-all duration-500 saturate-[0.85]"
