@@ -57,7 +57,7 @@ export default function AdminWaitlist() {
 
         try {
             setDeleting(id);
-            await apiRequest("DELETE", `/api/admin/leads/${id}`, undefined, {
+            await apiRequest("DELETE", `/api/admin/leads?id=${id}`, undefined, {
                 requiresAuth: true,
             });
             setLeads(leads.filter((lead) => lead.id !== id));
