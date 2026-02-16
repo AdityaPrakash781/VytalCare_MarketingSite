@@ -95,22 +95,20 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/">
-          <span className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-md overflow-hidden scale-105 transition-transform duration-300">
-              <img
-                src="/favicon.png"
-                alt="ProVytal logo"
-                className="w-full h-full object-cover"
-              />
-            </div>
+        <a href="/about" className="flex items-center gap-2 group cursor-pointer">
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-md overflow-hidden scale-105 transition-transform duration-300">
+            <img
+              src="/favicon.png"
+              alt="ProVytal logo"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
 
-            <span className="font-heading font-bold text-lg md:text-2xl tracking-tight text-slate-900 dark:text-white">
-              ProVytal
-            </span>
+          <span className="font-heading font-bold text-lg md:text-2xl tracking-tight text-slate-900 dark:text-white">
+            ProVytal
           </span>
-        </Link>
+        </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
