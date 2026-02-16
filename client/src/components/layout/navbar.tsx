@@ -129,13 +129,14 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           <ColorBlindToggle />
           <ModeToggle />
-          <Button
-            variant="ghost"
-            className="text-slate-600 dark:text-slate-300 hover:text-primary cursor-pointer"
-            onClick={() => window.open("https://health-navigator-copy.vercel.app/", "_blank")}
-          >
-            Log in
-          </Button>
+          <Link href="/login">
+            <Button
+              variant="ghost"
+              className="text-slate-600 dark:text-slate-300 hover:text-primary cursor-pointer"
+            >
+              Log in
+            </Button>
+          </Link>
           <Button
             className="bg-primary hover:bg-teal-600 text-white rounded-full px-6 shadow-lg shadow-teal-900/20 transition-all duration-300 hover:scale-105 hover:shadow-teal-500/25 dark:hover:shadow-teal-400/20 active:scale-95 cursor-pointer"
             onClick={handleJoinWaitlist}
@@ -174,13 +175,14 @@ export function Navbar() {
             ))}
           </div>
           <div className="flex flex-col gap-3 mt-4">
-            <Button
-              variant="outline"
-              className="w-full justify-center text-lg h-12"
-              onClick={() => window.open("https://health-navigator-copy.vercel.app/", "_blank")}
-            >
-              Log in
-            </Button>
+            <Link href="/login">
+              <Button
+                variant="outline"
+                className="w-full justify-center text-lg h-12"
+              >
+                Log in
+              </Button>
+            </Link>
             <Button
               className="w-full bg-primary text-white rounded-full text-lg h-12 shadow-lg"
               onClick={handleJoinWaitlist}
